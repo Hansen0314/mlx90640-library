@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-#include "MLX90640_I2C_Driver.h"
+#include "MLX9064x_I2C_Driver.h"
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
@@ -33,12 +33,12 @@
 int i2c_fd = 0;
 const char *i2c_device = "/dev/i2c-1";
 
-void MLX90640_I2CInit()
+void MLX9064x_I2CInit()
 {
     
 }
 
-int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddressRead, uint16_t *data)
+int MLX9064x_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddressRead, uint16_t *data)
 {
     if(!i2c_fd){
         i2c_fd = open(i2c_device, O_RDWR);
@@ -81,11 +81,11 @@ int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddr
     return 0;
 } 
 
-void MLX90640_I2CFreqSet(int freq)
+void MLX9064x_I2CFreqSet(int freq)
 {
 }
 
-int MLX90640_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
+int MLX9064x_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
 { 
     char cmd[4] = {(char)(writeAddress >> 8), (char)(writeAddress & 0x00FF), (char)(data >> 8), (char)(data & 0x00FF)};
     int result;

@@ -26,7 +26,7 @@
  */
  
 #include "mbed.h"
-#include "MLX90640_I2C_Driver.h"
+#include "MLX9064x_I2C_Driver.h"
 
 
 DigitalInOut sda(p9);
@@ -53,12 +53,12 @@ void Wait(int);
 
 static int freqCnt;
 
-void MLX90640_I2CInit()
+void MLX9064x_I2CInit()
 {   
     I2CStop();
 }
     
-int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress,uint16_t nMemAddressRead, uint16_t *data)
+int MLX9064x_I2CRead(uint8_t slaveAddr, uint16_t startAddress,uint16_t nMemAddressRead, uint16_t *data)
 {
     uint8_t sa;
     int ack = 0;
@@ -119,12 +119,12 @@ int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress,uint16_t nMemAddre
   
 } 
 
-void MLX90640_I2CFreqSet(int freq)
+void MLX9064x_I2CFreqSet(int freq)
 {
     freqCnt = freq>>1;
 }
 
-int MLX90640_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
+int MLX9064x_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
 {
     uint8_t sa;
     int ack = 0;
@@ -157,7 +157,7 @@ int MLX90640_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
     }           
     I2CStop();   
     
-    MLX90640_I2CRead(slaveAddr,writeAddress,1, &dataCheck);
+    MLX9064x_I2CRead(slaveAddr,writeAddress,1, &dataCheck);
     
     if ( dataCheck != data)
     {

@@ -14,18 +14,18 @@
  * limitations under the License.
  *
  */
-#include "MLX90640_I2C_Driver.h"
+#include "MLX9064x_I2C_Driver.h"
 #include <iostream>
 #include <bcm2835.h>
 
 int init = 0;
 
-void MLX90640_I2CInit()
+void MLX9064x_I2CInit()
 {
     
 }
 
-int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddressRead, uint16_t *data)
+int MLX9064x_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddressRead, uint16_t *data)
 {
     if(!init){
         bcm2835_init();
@@ -53,11 +53,11 @@ int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddr
     return 0;
 } 
 
-void MLX90640_I2CFreqSet(int freq)
+void MLX9064x_I2CFreqSet(int freq)
 {
 }
 
-int MLX90640_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
+int MLX9064x_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
 {
     int result;
     char cmd[4] = {(char)(writeAddress >> 8), (char)(writeAddress & 0x00FF), (char)(data >> 8), (char)(data & 0x00FF)};
